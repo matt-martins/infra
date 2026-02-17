@@ -1,0 +1,12 @@
+# Local deployment scripts (may contain sensitive profile names)
+ManualDeploy.sh
+
+# OS files
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/

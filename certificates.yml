@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Sound Space certificates - deploy in both ap-southeast-2 (for ALB/API Gateway) and us-east-1 (for CloudFront)'
+
+Resources:
+  CounsellingCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: soundspacecounselling.au
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.soundspacecounselling.au'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+  ConsultingCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: soundspaceconsulting.com.au
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.soundspaceconsulting.com.au'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+Outputs:
+  CounsellingCertificateArn:
+    Description: Sound Space Counselling Certificate ARN
+    Value: !Ref CounsellingCertificate
+    Export:
+      Name: Certificates-CounsellingCertificateArn
+
+  ConsultingCertificateArn:
+    Description: Sound Space Consulting Certificate ARN
+    Value: !Ref ConsultingCertificate
+    Export:
+      Name: Certificates-ConsultingCertificateArn

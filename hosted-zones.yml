@@ -1,0 +1,76 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Sound Space hosted zones
+
+Resources:
+  ConsultingHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: soundspaceconsulting.com.au
+
+  CounsellingHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: soundspacecounselling.au
+
+  # Google Workspace MX Records for soundspaceconsulting.com.au
+  ConsultingMXRecords:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref ConsultingHostedZone
+      Name: soundspaceconsulting.com.au.
+      Type: MX
+      TTL: 300
+      ResourceRecords:
+        - "1 ASPMX.L.GOOGLE.COM"
+        - "5 ALT1.ASPMX.L.GOOGLE.COM"
+        - "5 ALT2.ASPMX.L.GOOGLE.COM"
+        - "10 ALT3.ASPMX.L.GOOGLE.COM"
+        - "10 ALT4.ASPMX.L.GOOGLE.COM"
+
+  # Verification TXT records (Google & Microsoft)
+  ConsultingVerificationTXT:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref ConsultingHostedZone
+      Name: soundspaceconsulting.com.au.
+      Type: TXT
+      TTL: 300
+      ResourceRecords:
+        - '"google-site-verification=9gRJoYFvAirJv9LIdoIcDxFvQ5ywpX0VUI"'
+        - '"MS=ms34306402"'
+
+  # Google domain verification CNAME
+  ConsultingGoogleVerificationCNAME:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref ConsultingHostedZone
+      Name: xtg4saerzunf.soundspaceconsulting.com.au.
+      Type: CNAME
+      TTL: 300
+      ResourceRecords:
+        - gv-u3zxnuyebvwpki.dv.googlehosted.com
+
+Outputs:
+  ConsultingRootDomain:
+    Description: Sound Space Consulting Root Domain
+    Value: soundspaceconsulting.com.au
+    Export:
+      Name: Domain-ConsultingRootDomain-Ref
+
+  CounsellingRootDomain:
+    Description: Sound Space Counselling Root Domain
+    Value: soundspacecounselling.au
+    Export:
+      Name: Domain-CounsellingRootDomain-Ref
+
+  ConsultingHostedZone:
+    Description: Sound Space Consulting Hosted Zone
+    Value: !Ref ConsultingHostedZone
+    Export:
+      Name: Domain-ConsultingHostedZone-Ref
+
+  CounsellingHostedZone:
+    Description: Sound Space Counselling Hosted Zone
+    Value: !Ref CounsellingHostedZone
+    Export:
+      Name: Domain-CounsellingHostedZone-Ref
