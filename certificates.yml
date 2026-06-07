@@ -22,6 +22,70 @@ Resources:
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
 
+  # Salatino Certificates
+  ClubeSalatinoCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: clubesalatino.com.br
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.clubesalatino.com.br'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+  CanilSalatinoCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: canilsalatino.com.br
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.canilsalatino.com.br'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+  SalatinoCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: salatino.com.br
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.salatino.com.br'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+  # Curves Sculpting Certificate
+  CurvesSculptingCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: curvessculpting.com.au
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.curvessculpting.com.au'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+  # Cassia Boglio Certificate
+  CassiaBoglioCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: cassiaboglio.com
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.cassiaboglio.com'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
+  # Mind Sounds Certificate
+  MindSoundsCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: mindsounds.com.au
+      ValidationMethod: DNS
+      SubjectAlternativeNames:
+        - '*.mindsounds.com.au'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+
 Outputs:
   CounsellingCertificateArn:
     Description: Sound Space Counselling Certificate ARN
@@ -34,3 +98,39 @@ Outputs:
     Value: !Ref ConsultingCertificate
     Export:
       Name: Certificates-ConsultingCertificateArn
+
+  ClubeSalatinoCertificateArn:
+    Description: Clube Salatino Certificate ARN
+    Value: !Ref ClubeSalatinoCertificate
+    Export:
+      Name: Certificates-ClubeSalatinoCertificateArn
+
+  CanilSalatinoCertificateArn:
+    Description: Canil Salatino Certificate ARN
+    Value: !Ref CanilSalatinoCertificate
+    Export:
+      Name: Certificates-CanilSalatinoCertificateArn
+
+  SalatinoCertificateArn:
+    Description: Salatino Certificate ARN
+    Value: !Ref SalatinoCertificate
+    Export:
+      Name: Certificates-SalatinoCertificateArn
+
+  CurvesSculptingCertificateArn:
+    Description: Curves Sculpting Certificate ARN
+    Value: !Ref CurvesSculptingCertificate
+    Export:
+      Name: Certificates-CurvesSculptingCertificateArn
+
+  CassiaBoglioCertificateArn:
+    Description: Cassia Boglio Certificate ARN
+    Value: !Ref CassiaBoglioCertificate
+    Export:
+      Name: Certificates-CassiaBoglioCertificateArn
+
+  MindSoundsCertificateArn:
+    Description: Mind Sounds Certificate ARN
+    Value: !Ref MindSoundsCertificate
+    Export:
+      Name: Certificates-MindSoundsCertificateArn

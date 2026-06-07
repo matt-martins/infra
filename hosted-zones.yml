@@ -37,6 +37,7 @@ Resources:
       TTL: 300
       ResourceRecords:
         - '"google-site-verification=9gRJoYFvAirJv9LIdoIcDxFvQ5ywpX0VUI"'
+        - '"google-site-verification=9gRjoYFvAirJv9L1doIcDxFvQ5ywpX0VUmFm04id2PE"'
         - '"MS=ms34306402"'
 
   # Google domain verification CNAME
@@ -49,6 +50,101 @@ Resources:
       TTL: 300
       ResourceRecords:
         - gv-u3zxnuyebvwpki.dv.googlehosted.com
+
+  # Salatino Hosted Zones
+  ClubeSalatinoHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: clubesalatino.com.br
+
+  CanilSalatinoHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: canilsalatino.com.br
+
+  SalatinoHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: salatino.com.br
+
+  # Curves Sculpting Hosted Zone
+  CurvesSculptingHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: curvessculpting.com.au
+
+  # Cassia Boglio Hosted Zone
+  CassiaBoglioHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: cassiaboglio.com
+
+  # Mind Sounds Hosted Zone
+  MindSoundsHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: mindsounds.com.au
+
+  # Google Workspace MX Records for mindsounds.com.au
+  MindSoundsMXRecords:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref MindSoundsHostedZone
+      Name: mindsounds.com.au.
+      Type: MX
+      TTL: 300
+      ResourceRecords:
+        - '1 ASPMX.L.GOOGLE.COM'
+        - '5 ALT1.ASPMX.L.GOOGLE.COM'
+        - '5 ALT2.ASPMX.L.GOOGLE.COM'
+        - '10 ALT3.ASPMX.L.GOOGLE.COM'
+        - '10 ALT4.ASPMX.L.GOOGLE.COM'
+
+  # Google Workspace verification and MX Records for salatino.com.br
+  SalatinoVerificationTXT:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref SalatinoHostedZone
+      Name: salatino.com.br.
+      Type: TXT
+      TTL: 300
+      ResourceRecords:
+        - '"google-site-verification=gPMo_548Wq2TzHAo2-L3e0jbi4dRg7nfD6yiNTE7bPA"'
+
+  SalatinoGoogleVerificationCNAME:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref SalatinoHostedZone
+      Name: odsveh5c56u4.salatino.com.br.
+      Type: CNAME
+      TTL: 300
+      ResourceRecords:
+        - gv-taz472b4vrxta3.dv.googlehosted.com
+
+  SalatinoMXRecords:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref SalatinoHostedZone
+      Name: salatino.com.br.
+      Type: MX
+      TTL: 300
+      ResourceRecords:
+        - '1 ASPMX.L.GOOGLE.COM'
+        - '5 ALT1.ASPMX.L.GOOGLE.COM'
+        - '5 ALT2.ASPMX.L.GOOGLE.COM'
+        - '10 ALT3.ASPMX.L.GOOGLE.COM'
+        - '10 ALT4.ASPMX.L.GOOGLE.COM'
+
+  # Google verification for clubesalatino.com.br
+  ClubeSalatinoGoogleVerificationRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref ClubeSalatinoHostedZone
+      Type: TXT
+      Name: clubesalatino.com.br.
+      TTL: 300
+      ResourceRecords:
+        - '"google-site-verification=viuqMRPE_9Mk19MTtPQ6kxpk2GUg3tsFgHUL"'
 
 Outputs:
   ConsultingRootDomain:
@@ -74,3 +170,75 @@ Outputs:
     Value: !Ref CounsellingHostedZone
     Export:
       Name: Domain-CounsellingHostedZone-Ref
+
+  ClubeSalatinoDomain:
+    Description: Clube Salatino Root Domain
+    Value: clubesalatino.com.br
+    Export:
+      Name: Domain-ClubeSalatinoDomain-Ref
+
+  CanilSalatinoDomain:
+    Description: Canil Salatino Root Domain
+    Value: canilsalatino.com.br
+    Export:
+      Name: Domain-CanilSalatinoDomain-Ref
+
+  SalatinoDomain:
+    Description: Salatino Root Domain
+    Value: salatino.com.br
+    Export:
+      Name: Domain-SalatinoDomain-Ref
+
+  ClubeSalatinoHostedZone:
+    Description: Clube Salatino Hosted Zone
+    Value: !Ref ClubeSalatinoHostedZone
+    Export:
+      Name: Domain-ClubeSalatinoHostedZone-Ref
+
+  CanilSalatinoHostedZone:
+    Description: Canil Salatino Hosted Zone
+    Value: !Ref CanilSalatinoHostedZone
+    Export:
+      Name: Domain-CanilSalatinoHostedZone-Ref
+
+  SalatinoHostedZone:
+    Description: Salatino Hosted Zone
+    Value: !Ref SalatinoHostedZone
+    Export:
+      Name: Domain-SalatinoHostedZone-Ref
+
+  CurvesSculptingDomain:
+    Description: Curves Sculpting Root Domain
+    Value: curvessculpting.com.au
+    Export:
+      Name: Domain-CurvesSculptingDomain-Ref
+
+  CurvesSculptingHostedZone:
+    Description: Curves Sculpting Hosted Zone
+    Value: !Ref CurvesSculptingHostedZone
+    Export:
+      Name: Domain-CurvesSculptingHostedZone-Ref
+
+  CassiaBoglioDomain:
+    Description: Cassia Boglio Root Domain
+    Value: cassiaboglio.com
+    Export:
+      Name: Domain-CassiaBoglioDomain-Ref
+
+  CassiaBoglioHostedZone:
+    Description: Cassia Boglio Hosted Zone
+    Value: !Ref CassiaBoglioHostedZone
+    Export:
+      Name: Domain-CassiaBoglioHostedZone-Ref
+
+  MindSoundsDomain:
+    Description: Mind Sounds Root Domain
+    Value: mindsounds.com.au
+    Export:
+      Name: Domain-MindSoundsDomain-Ref
+
+  MindSoundsHostedZone:
+    Description: Mind Sounds Hosted Zone
+    Value: !Ref MindSoundsHostedZone
+    Export:
+      Name: Domain-MindSoundsHostedZone-Ref
