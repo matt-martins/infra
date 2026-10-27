@@ -85,6 +85,12 @@ Resources:
     Properties:
       Name: mindsounds.com.au
 
+  # Laura Botelho Hosted Zone
+  LauraBotelhoHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: laurabotelho.com.br
+
   # Google Workspace MX Records for mindsounds.com.au
   MindSoundsMXRecords:
     Type: AWS::Route53::RecordSet
@@ -99,6 +105,17 @@ Resources:
         - '5 ALT2.ASPMX.L.GOOGLE.COM'
         - '10 ALT3.ASPMX.L.GOOGLE.COM'
         - '10 ALT4.ASPMX.L.GOOGLE.COM'
+
+  # Google Workspace verification TXT for mindsounds.com.au
+  MindSoundsVerificationTXT:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref MindSoundsHostedZone
+      Name: mindsounds.com.au.
+      Type: TXT
+      TTL: 300
+      ResourceRecords:
+        - '"google-site-verification=kHUxpUtJ_8w-yLdViO5lLlukwM-AZNfBJtrVyX7V3pQ"'
 
   # Google Workspace verification and MX Records for salatino.com.br
   SalatinoVerificationTXT:
@@ -242,3 +259,15 @@ Outputs:
     Value: !Ref MindSoundsHostedZone
     Export:
       Name: Domain-MindSoundsHostedZone-Ref
+
+  LauraBotelhoDomain:
+    Description: Laura Botelho Root Domain
+    Value: laurabotelho.com.br
+    Export:
+      Name: Domain-LauraBotelhoDomain-Ref
+
+  LauraBotelhoHostedZone:
+    Description: Laura Botelho Hosted Zone
+    Value: !Ref LauraBotelhoHostedZone
+    Export:
+      Name: Domain-LauraBotelhoHostedZone-Ref
